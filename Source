@@ -7,12 +7,14 @@ cls
 echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
 echo.
 echo 1. Discord Webhook Spammer
-echo 2. Exit
+echo 2. Discord Profile Grabber
+echo 3. Exit
 echo.
 set /p choice=Choose an option:
 
 if "%choice%"=="1" goto spammer
-if "%choice%"=="2" goto exit
+if "%choice%"=="2" goto grabber
+if "%choice%"=="3" goto exit
 echo Invalid option. Please choose a valid option.
 pause
 goto menu
@@ -29,6 +31,30 @@ curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
 curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
 timeout /t 0 >nul
 goto spam
+
+:grabber
+cls
+set /p discord_id=Enter Discord User ID:
+set "api_url=https://discord.com/api/v9/users/%discord_id%"
+
+REM Fetch user information
+for /f "tokens=* delims=" %%i in ('curl -s "%api_url%"') do set "user_info=%%i"
+
+REM Parse user information
+for /f "tokens=2 delims=:" %%i in ("%user_info%") do set "username=%%i"
+for /f "tokens=2 delims=:" %%i in ("%user_info%") do set "discriminator=%%i"
+for /f "tokens=2 delims=:" %%i in ("%user_info%") do set "about_me=%%i"
+for /f "tokens=2 delims=:" %%i in ("%user_info%") do set "creation_date=%%i"
+
+REM Display user information
+echo User Information:
+echo Username: %username%
+echo Discriminator: %discriminator%
+echo About Me: %about_me%
+echo Creation Date: %creation_date%
+
+pause
+goto menu
 
 :exit
 echo Exiting RONIN CLIENT.
