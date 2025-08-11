@@ -1,9 +1,18 @@
 @echo off
+color 0A
 setlocal enabledelayedexpansion
 
 :menu
 cls
-echo RONIN CLIENT(made by thatguyronin)
+echo                               __                            __  __                       __
+echo                              |  \                          |  \|  \                     |  \
+echo  ______    ______   _______   $$ _______          _______ | $$ $$  ______   _______  _| $$_
+echo /      \  /      \ |       \ |  \|       \        /       \| $$|  \ /      \ |       \|   $$ \
+echo |  $$$$$$\|  $$$$$$\| $$$$$$$\| $$| $$$$$$$\      |  $$$$$$$| $$| $$|  $$$$$$\| $$$$$$$\$$$$$$
+echo | $$   $$| $$  | $$| $$  | $$| $$| $$  | $$      | $$      | $$| $$| $$    $$| $$  | $$ | $$ __
+echo | $$      | $$__/ $$| $$  | $$| $$| $$  | $$      | $$_____ | $$| $$| $$$$$$$$| $$  | $$ | $$|  \
+echo | $$       $$    $$| $$  | $$| $$| $$  | $$       $$     \| $$| $$ $$     \| $$  | $$  $$  $$
+echo  $$        $$$$$$  $$   $$ $$ $$   $$        $$$$$$$ $$ $$  $$$$$$$ $$   $$   $$$$
 echo.
 echo 1. Discord Webhook Spammer
 echo 2. Exit
@@ -19,7 +28,7 @@ goto menu
 :spammer
 cls
 set /p webhook_url=Enter Discord Webhook URL:
-set "jsonData={\"content\":\"@everyone RONIN CLIENT ON TOP\"}"
+set "jsonData={\"content\":\"@everyone ASCII CLIENT ON TOP\"}"
 
 :spam
 curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
@@ -30,6 +39,6 @@ timeout /t 0 >nul
 goto spam
 
 :exit
-echo Exiting RONIN CLIENT.
+echo Exiting ASCII CLIENT.
 pause
 exit
