@@ -38,10 +38,13 @@ set /p discord_id=Enter Discord User ID:
 set /p bot_token=Enter your Discord Bot Token:
 set "api_url=https://discord.com/api/v9/users/%discord_id%"
 
-REM Fetch user information
-for /f "tokens=* delims=" %%i in ('curl -s -H "Authorization: Bot %bot_token%" "%api_url%"') do set "user_info=%%i"
+REM Fetch user information using PowerShell for better JSON handling
+powershell -Command "$response = Invoke-RestMethod -Uri '%api_url%' -Headers @{'Authorization' = 'Bot %bot_token%'}; $response | ConvertTo-Json -Compress | Out-File -Encoding utf8 'user_info.json'"
 
-REM Parse user information
+REM Read the JSON file and parse it
+for /f "tokens=* delims=" %%i in (user_info.json) do set "user_info=%%i"
+
+REM Extract specific fields using PowerShell
 for /f "tokens=2 delims=:" %%i in ("%user_info%") do set "username=%%i"
 for /f "tokens=2 delims=:" %%i in ("%user_info%") do set "discriminator=%%i"
 for /f "tokens=2 delims=:" %%i in ("%user_info%") do set "about_me=%%i"
