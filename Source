@@ -7,7 +7,7 @@ cls
 echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
 echo.
 echo 1. Discord Webhook Spammer
-echo 2. Discord Profile Grabber
+echo 2. Discord Profile Info Grabber
 echo 3. Exit
 echo.
 set /p choice=Choose an option:
@@ -35,10 +35,11 @@ goto spam
 :grabber
 cls
 set /p discord_id=Enter Discord User ID:
+set /p bot_token=Enter your Discord Bot Token:
 set "api_url=https://discord.com/api/v9/users/%discord_id%"
 
 REM Fetch user information
-for /f "tokens=* delims=" %%i in ('curl -s "%api_url%"') do set "user_info=%%i"
+for /f "tokens=* delims=" %%i in ('curl -s -H "Authorization: Bot %bot_token%" "%api_url%"') do set "user_info=%%i"
 
 REM Parse user information
 for /f "tokens=2 delims=:" %%i in ("%user_info%") do set "username=%%i"
