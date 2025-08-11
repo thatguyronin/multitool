@@ -1,0 +1,43 @@
+@echo off
+setlocal enabledelayedexpansion
+
+:menu
+cls
+echo RONIN CLIENT
+echo.
+echo 1. Discord Webhook Spammer
+echo 2. Token Grabber (Broken)
+echo 3. Exit
+echo.
+set /p choice=Choose an option:
+
+if "%choice%"=="1" goto spammer
+if "%choice%"=="2" goto grabber
+if "%choice%"=="3" goto exit
+echo Invalid option. Please choose a valid option.
+pause
+goto menu
+
+:spammer
+cls
+set /p webhook_url=Enter Discord Webhook URL:
+set "jsonData={\"content\":\"@everyone RONIN CLIENT ON TOP\"}"
+
+:spam
+curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
+curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
+curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
+curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
+timeout /t 0 >nul
+goto spam
+
+:grabber
+cls
+echo Token Grabber is currently broken.
+pause
+goto menu
+
+:exit
+echo Exiting RONIN CLIENT.
+pause
+exit
