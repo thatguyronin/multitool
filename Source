@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 :menu
 cls
-echo RONIN CLIENT
+echo RONIN CLIENT(made by thatguyronin)
 echo.
 echo 1. Discord Webhook Spammer
 echo 2. Exit
