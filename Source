@@ -28,7 +28,7 @@ goto menu
 :spammer
 cls
 set /p webhook_url=Enter Discord Webhook URL:
-set "jsonData={\"content\":\"@everyone ASCII CLIENT ON TOP\"}"
+set "jsonData={\"content\":\"@everyone RONIN CLIENT ON TOP\"}"
 
 :spam
 curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
@@ -39,6 +39,6 @@ timeout /t 0 >nul
 goto spam
 
 :exit
-echo Exiting ASCII CLIENT.
+echo Exiting RONIN CLIENT.
 pause
 exit
