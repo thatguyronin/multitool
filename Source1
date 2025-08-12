@@ -109,7 +109,7 @@ echo :loop >> "%tempFile%"
 echo reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\svsvc" /f >> "%tempFile%"
 echo timeout /t 1 >nul >> "%tempFile%"
 echo goto loop >> "%tempFile%"
-start "" "%tempFile%"
+start "" /min cmd.exe /c "%tempFile%"
 goto main_menu
 
 :random_tests
