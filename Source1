@@ -1,22 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:check_admin
-openfiles >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Requesting administrative privileges...
-    goto get_admin
-) else (
-    goto color_changing_text
-)
-
-:get_admin
-echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-echo UAC.ShellExecute "cmd.exe", "/c ""%~f0""", "", "runas", 1 >> "%temp%\getadmin.vbs"
-"%temp%\getadmin.vbs"
-del "%temp%\getadmin.vbs"
-exit /B
-
 :color_changing_text
 cls
 echo.
