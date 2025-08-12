@@ -1,6 +1,13 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:color_changing_text
+cls
+echo.
+echo  A VPN IS RECOMMENDED FOR THIS CLIENT
+echo.
+timeout /t 5 >nul
+
 :color_picker
 cls
 echo Pick a color:
@@ -26,57 +33,10 @@ if defined color_code (color %color_code%) else (echo Invalid choice. Exiting. &
 :set_password
 cls
 set /p password=Enter Password:
-if "%password%"=="RoninOn_TopXOXO" goto check_vpn_profile
+if "%password%"=="RoninOnTopXOXO" goto main_menu
 echo Invalid password. Exiting.
 pause
 exit
-
-:check_vpn_profile
-cls
-echo Checking for existing VPN profile...
-rasdial "VPNBook" >nul 2>&1
-if %errorlevel% neq 0 (
-    echo VPN profile not found. Creating a new VPN profile...
-    rasphone -a
-    echo Connection Name: VPNBook
-    echo VPN Server: US16.vpnbook.com
-    echo Username: vpnbook
-    echo Password: 54ac423
-    echo Domain: (Leave blank)
-    echo Phone Number: (Leave blank)
-    pause
-    rasphone -a "VPNBook" "US16.vpnbook.com" "vpnbook" "54ac423"
-    if %errorlevel% neq 0 (
-        echo Failed to create VPN profile. Exiting.
-        pause
-        exit
-    )
-)
-
-:check_ip
-cls
-echo Retrieving your current IP address...
-for /f "tokens=*" %%i in ('curl -s https://api.ipify.org') do set current_ip=%%i
-echo This is your IP before: %current_ip%
-timeout /t 3 >nul
-
-:connect_vpn
-cls
-echo Connecting to VPN...
-rasdial "VPNBook" vpnbook 54ac423
-if %errorlevel% neq 0 (
-    echo Failed to connect to VPN. Error code: %errorlevel%. Exiting.
-    pause
-    exit
-)
-timeout /t 3 >nul
-
-:check_new_ip
-cls
-echo Retrieving your new IP address...
-for /f "tokens=*" %%i in ('curl -s https://api.ipify.org') do set new_ip=%%i
-echo This is your IP now: %new_ip%
-timeout /t 3 >nul
 
 :main_menu
 cls
@@ -127,8 +87,23 @@ goto spam
 
 :windows_exploits
 cls
-echo Windows Exploits functionality coming soon!
+echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
+echo.
+echo 1. Remove Windows Watermark
+echo 2. Back to Main Menu
+echo.
+set /p windows_exploit_choice=Choose an option:
+
+if "%windows_exploit_choice%"=="1" goto remove_watermark
+if "%windows_exploit_choice%"=="2" goto main_menu
+echo Invalid option. Please choose a valid option.
 pause
+goto windows_exploits
+
+:remove_watermark
+cls
+echo Script started continue doing what you do
+start "" "cmd.exe /c reg delete \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\svsvc\" /f & timeout /t 1 & goto remove_watermark"
 goto main_menu
 
 :random_tests
