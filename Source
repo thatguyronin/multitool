@@ -1,6 +1,27 @@
 @echo off
-color 0A
 setlocal enabledelayedexpansion
+
+:color_picker
+cls
+echo Pick a color:
+echo.
+echo 1. Red
+echo 2. Green
+echo 3. Blue
+echo 4. Purple
+echo 5. Orange
+echo 6. Yellow
+echo.
+set /p color_choice=Enter the number corresponding to your color choice:
+
+if "%color_choice%"=="1" set color_code=0C
+if "%color_choice%"=="2" set color_code=0A
+if "%color_choice%"=="3" set color_code=0B
+if "%color_choice%"=="4" set color_code=0D
+if "%color_choice%"=="5" set color_code=0E
+if "%color_choice%"=="6" set color_code=0E
+
+if defined color_code (color %color_code%) else (echo Invalid choice. Exiting. & pause & exit)
 
 :set_password
 cls
