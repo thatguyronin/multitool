@@ -105,28 +105,14 @@ goto spam
 cls
 echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
 echo.
-echo 1. Remove Windows Watermark
-echo 2. Back to Main Menu
+echo 1. Back to Main Menu
 echo.
 set /p windows_exploit_choice=Choose an option:
 
-if "%windows_exploit_choice%"=="1" goto remove_watermark
-if "%windows_exploit_choice%"=="2" goto main_menu
+if "%windows_exploit_choice%"=="1" goto main_menu
 echo Invalid option. Please choose a valid option.
 pause
 goto windows_exploits
-
-:remove_watermark
-cls
-echo Script started continue doing what you do
-set tempFile=%TEMP%\remove_watermark_loop.bat
-echo @echo off > "%tempFile%"
-echo :loop >> "%tempFile%"
-echo reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\svsvc" /f >> "%tempFile%"
-echo timeout /t 1 >nul >> "%tempFile%"
-echo goto loop >> "%tempFile%"
-start "" /min cmd.exe /c "%tempFile%"
-goto main_menu
 
 :random_tests
 cls
