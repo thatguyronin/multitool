@@ -26,14 +26,14 @@ if defined color_code (color %color_code%) else (echo Invalid choice. Exiting. &
 :set_password
 cls
 set /p password=Enter Password:
-if "%password%"=="Ronin_On_TopXOXO" goto check_ip
+if "%password%"=="RoninOnTopXOXO" goto check_ip
 echo Invalid password. Exiting.
 pause
 exit
 
 :check_ip
 cls
-echo Please wait....
+echo Retrieving your current IP address...
 for /f "tokens=*" %%i in ('curl -s https://api.ipify.org') do set current_ip=%%i
 echo This is your IP before: %current_ip%
 timeout /t 3 >nul
@@ -42,6 +42,11 @@ timeout /t 3 >nul
 cls
 echo Connecting to VPN...
 rasdial "us1.vpnbook.com" vpnbook mbr7ahvxz
+if %errorlevel% neq 0 (
+    echo Failed to connect to VPN. Exiting.
+    pause
+    exit
+)
 timeout /t 3 >nul
 
 :check_new_ip
