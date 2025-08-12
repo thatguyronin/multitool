@@ -2,21 +2,39 @@
 color 0A
 setlocal enabledelayedexpansion
 
-:menu
+:main_menu
 cls
+echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
 echo.
-echo ^<ESC^>[34;1mRONIN CLIENT ON TOP^<ESC^>[0m(MADE BY THATGUIYRONIN)
+echo 1. Discord
+echo 2. Windows Exploits
+echo 3. Random Tests
+echo 4. Exit
 echo.
-echo 1. Discord Webhook Spammer
-echo 2. Exit
-echo.
-set /p choice=Choose an option:
+set /p main_choice=Choose an option:
 
-if "%choice%"=="1" goto spammer
-if "%choice%"=="2" goto exit
+if "%main_choice%"=="1" goto discord_menu
+if "%main_choice%"=="2" goto windows_exploits
+if "%main_choice%"=="3" goto random_tests
+if "%main_choice%"=="4" goto exit
 echo Invalid option. Please choose a valid option.
 pause
-goto menu
+goto main_menu
+
+:discord_menu
+cls
+echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
+echo.
+echo 1. Discord Webhook Spammer
+echo 2. Back to Main Menu
+echo.
+set /p discord_choice=Choose an option:
+
+if "%discord_choice%"=="1" goto spammer
+if "%discord_choice%"=="2" goto main_menu
+echo Invalid option. Please choose a valid option.
+pause
+goto discord_menu
 
 :spammer
 cls
@@ -30,6 +48,18 @@ curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
 curl -X POST -H "Content-Type: application/json" -d "%jsonData%" "%webhook_url%"
 timeout /t 0 >nul
 goto spam
+
+:windows_exploits
+cls
+echo Windows Exploits functionality coming soon!
+pause
+goto main_menu
+
+:random_tests
+cls
+echo Random Tests functionality coming soon!
+pause
+goto main_menu
 
 :exit
 echo Exiting RONIN CLIENT.
