@@ -19,17 +19,37 @@ if "%color_choice%"=="2" set color_code=0A
 if "%color_choice%"=="3" set color_code=0B
 if "%color_choice%"=="4" set color_code=0D
 if "%color_choice%"=="5" set color_code=0E
-if "%color_choice%"=="6" set color_code=0E
+if "%color_choice%"=="6" set color_code=0F
 
 if defined color_code (color %color_code%) else (echo Invalid choice. Exiting. & pause & exit)
 
 :set_password
 cls
 set /p password=Enter Password:
-if "%password%"=="RoninOnTopXOXO" goto main_menu
+if "%password%"=="RoninOnTopXOXO" goto check_ip
 echo Invalid password. Exiting.
 pause
 exit
+
+:check_ip
+cls
+echo Please wait....
+for /f "tokens=*" %%i in ('curl -s https://api.ipify.org') do set current_ip=%%i
+echo This is your IP before: %current_ip%
+timeout /t 3 >nul
+
+:connect_vpn
+cls
+echo Connecting to VPN...
+rasdial "us1.vpnbook.com" vpnbook mbr7ahvxz
+timeout /t 3 >nul
+
+:check_new_ip
+cls
+echo Retrieving your new IP address...
+for /f "tokens=*" %%i in ('curl -s https://api.ipify.org') do set new_ip=%%i
+echo This is your IP now: %new_ip%
+timeout /t 3 >nul
 
 :main_menu
 cls
