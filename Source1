@@ -12,7 +12,7 @@ if %errorlevel% neq 0 (
 
 :get_admin
 echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-echo UAC.ShellExecute "cmd.exe", "/c ""%~s0""", "", "runas", 1 >> "%temp%\getadmin.vbs"
+echo UAC.ShellExecute "cmd.exe", "/c ""%~f0""", "", "runas", 1 >> "%temp%\getadmin.vbs"
 "%temp%\getadmin.vbs"
 del "%temp%\getadmin.vbs"
 exit /B
