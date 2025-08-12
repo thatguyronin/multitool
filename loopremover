@@ -1,5 +1,9 @@
 @echo off
+setlocal
+
 :loop
-reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\svsvc" /f
-timeout /t 1 >nul
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SECOMNService" /v Start /t REG_DWORD /d 4 /f
+timeout /t 5 >nul
 goto loop
+
+endlocal
