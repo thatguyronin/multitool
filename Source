@@ -41,7 +41,7 @@ timeout /t 3 >nul
 :connect_vpn
 cls
 echo Connecting to VPN...
-rasdial "US16.vpnbook.com" vpnbook 54ac423
+rasdial "VPNBook" vpnbook 54ac423
 if %errorlevel% neq 0 (
     echo Failed to connect to VPN. Error code: %errorlevel%. Exiting.
     pause
