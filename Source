@@ -4,14 +4,9 @@ setlocal enabledelayedexpansion
 
 :menu
 cls
-echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
-echo.
-echo 1. Discord Webhook Spammer
-echo 2. Discord Profile Info Grabber
-echo 3. Exit
-echo.
-set /p choice=Choose an option:
+powershell -Command "Add-Type -AssemblyName System.Windows.Forms; $form = New-Object System.Windows.Forms.Form; $form.Text = 'RONIN CLIENT ON TOP (MADE BY THATGUIYRONIN)'; $form.BackColor = [System.Drawing.Color]::Black; $form.Size = New-Object System.Drawing.Size(400,300); $form.StartPosition = 'CenterScreen'; $button1 = New-Object System.Windows.Forms.Button; $button1.Text = 'Discord Webhook Spammer'; $button1.Size = New-Object System.Drawing.Size(300,50); $button1.Location = New-Object System.Drawing.Point(50,50); $button1.BackColor = [System.Drawing.Color]::Green; $button1.ForeColor = [System.Drawing.Color]::Black; $button1.Add_Click({& {exit 1}}); $form.Controls.Add($button1); $button2 = New-Object System.Windows.Forms.Button; $button2.Text = 'Discord Profile Info Grabber'; $button2.Size = New-Object System.Drawing.Size(300,50); $button2.Location = New-Object System.Drawing.Point(50,120); $button2.BackColor = [System.Drawing.Color]::Green; $button2.ForeColor = [System.Drawing.Color]::Black; $button2.Add_Click({& {exit 2}}); $form.Controls.Add($button2); $button3 = New-Object System.Windows.Forms.Button; $button3.Text = 'Exit'; $button3.Size = New-Object System.Drawing.Size(300,50); $button3.Location = New-Object System.Drawing.Point(50,190); $button3.BackColor = [System.Drawing.Color]::Green; $button3.ForeColor = [System.Drawing.Color]::Black; $button3.Add_Click({& {exit 3}}); $form.Controls.Add($button3); $form.Add_Shown({$form.Activate()}); [void]$form.ShowDialog()"
 
+set choice=%errorlevel%
 if "%choice%"=="1" goto spammer
 if "%choice%"=="2" goto grabber
 if "%choice%"=="3" goto exit
@@ -21,7 +16,9 @@ goto menu
 
 :spammer
 cls
-set /p webhook_url=Enter Discord Webhook URL:
+powershell -Command "$form = New-Object System.Windows.Forms.Form; $form.Text = 'Discord Webhook Spammer'; $form.BackColor = [System.Drawing.Color]::Black; $form.Size = New-Object System.Drawing.Size(400,200); $form.StartPosition = 'CenterScreen'; $textBox = New-Object System.Windows.Forms.TextBox; $textBox.Location = New-Object System.Drawing.Point(50,50); $textBox.Size = New-Object System.Drawing.Size(300,30); $textBox.BackColor = [System.Drawing.Color]::White; $textBox.ForeColor = [System.Drawing.Color]::Black; $form.Controls.Add($textBox); $button = New-Object System.Windows.Forms.Button; $button.Text = 'Submit'; $button.Size = New-Object System.Drawing.Size(300,50); $button.Location = New-Object System.Drawing.Point(50,100); $button.BackColor = [System.Drawing.Color]::Green; $button.ForeColor = [System.Drawing.Color]::Black; $button.Add_Click({& {$webhook_url = $textBox.Text; exit 0}}); $form.Controls.Add($button); $form.Add_Shown({$form.Activate()}); [void]$form.ShowDialog()"
+
+set webhook_url=%errorlevel%
 set "jsonData={\"content\":\"@everyone RONIN CLIENT ON TOP\"}"
 
 :spam
@@ -34,8 +31,10 @@ goto spam
 
 :grabber
 cls
-set /p discord_id=Enter Discord User ID:
-set /p bot_token=Enter your Discord Bot Token:
+powershell -Command "$form = New-Object System.Windows.Forms.Form; $form.Text = 'Discord Profile Info Grabber'; $form.BackColor = [System.Drawing.Color]::Black; $form.Size = New-Object System.Drawing.Size(400,200); $form.StartPosition = 'CenterScreen'; $textBox1 = New-Object System.Windows.Forms.TextBox; $textBox1.Location = New-Object System.Drawing.Point(50,50); $textBox1.Size = New-Object System.Drawing.Size(300,30); $textBox1.BackColor = [System.Drawing.Color]::White; $textBox1.ForeColor = [System.Drawing.Color]::Black; $form.Controls.Add($textBox1); $textBox2 = New-Object System.Windows.Forms.TextBox; $textBox2.Location = New-Object System.Drawing.Point(50,100); $textBox2.Size = New-Object System.Drawing.Size(300,30); $textBox2.BackColor = [System.Drawing.Color]::White; $textBox2.ForeColor = [System.Drawing.Color]::Black; $form.Controls.Add($textBox2); $button = New-Object System.Windows.Forms.Button; $button.Text = 'Submit'; $button.Size = New-Object System.Drawing.Size(300,50); $button.Location = New-Object System.Drawing.Point(50,150); $button.BackColor = [System.Drawing.Color]::Green; $button.ForeColor = [System.Drawing.Color]::Black; $button.Add_Click({& {$discord_id = $textBox1.Text; $bot_token = $textBox2.Text; exit 0}}); $form.Controls.Add($button); $form.Add_Shown({$form.Activate()}); [void]$form.ShowDialog()"
+
+set discord_id=%errorlevel%
+set bot_token=%errorlevel%
 set "api_url=https://discord.com/api/v9/users/%discord_id%"
 
 REM Fetch user information using PowerShell for better JSON handling
