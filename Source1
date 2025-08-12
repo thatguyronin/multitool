@@ -44,15 +44,17 @@ echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
 echo.
 echo 1. Discord
 echo 2. Windows Exploits
-echo 3. Random Tests
-echo 4. Exit
+echo 3. System Info
+echo 4. Random Tests
+echo 5. Exit
 echo.
 set /p main_choice=Choose an option:
 
 if "%main_choice%"=="1" goto discord_menu
 if "%main_choice%"=="2" goto windows_exploits
-if "%main_choice%"=="3" goto random_tests
-if "%main_choice%"=="4" goto exit
+if "%main_choice%"=="3" goto system_info
+if "%main_choice%"=="4" goto random_tests
+if "%main_choice%"=="5" goto exit
 echo Invalid option. Please choose a valid option.
 pause
 goto main_menu
@@ -97,6 +99,26 @@ if "%windows_exploit_choice%"=="1" goto main_menu
 echo Invalid option. Please choose a valid option.
 pause
 goto windows_exploits
+
+:system_info
+cls
+echo Gathering detailed system information...
+echo.
+
+:: Use systeminfo to get detailed system information
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type" /C:"Processor(s)" /C:"BIOS Version" /C:"Total Physical Memory" /C:"Available Physical Memory" /C:"Virtual Memory" /C:"Page File" /C:"Page File Space" /C:"Domain" /C:"Logon Server" /C:"Hotfix(s)" /C:"Network Card(s)" /C:"Hyper-V Requirements" > system_info.txt
+
+:: Display the gathered information
+for /f "tokens=*" %%a in (system_info.txt) do (
+    echo %%a
+)
+
+:: Clean up
+del system_info.txt
+
+echo.
+pause
+goto main_menu
 
 :random_tests
 cls
