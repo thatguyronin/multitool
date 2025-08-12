@@ -2,6 +2,14 @@
 color 0A
 setlocal enabledelayedexpansion
 
+:set_password
+cls
+set /p password=Enter Password:
+if "%password%"=="RoninOnTopXOXO" goto main_menu
+echo Invalid password. Exiting.
+pause
+exit
+
 :main_menu
 cls
 echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
