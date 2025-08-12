@@ -103,7 +103,13 @@ goto windows_exploits
 :remove_watermark
 cls
 echo Script started continue doing what you do
-start "" "cmd.exe /c reg delete \"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\svsvc\" /f & timeout /t 1 & goto remove_watermark"
+set tempFile=%TEMP%\remove_watermark_loop.bat
+echo @echo off > "%tempFile%"
+echo :loop >> "%tempFile%"
+echo reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\svsvc" /f >> "%tempFile%"
+echo timeout /t 1 >nul >> "%tempFile%"
+echo goto loop >> "%tempFile%"
+start "" "cmd.exe /c %tempFile%"
 goto main_menu
 
 :random_tests
