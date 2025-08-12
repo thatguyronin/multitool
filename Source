@@ -26,10 +26,32 @@ if defined color_code (color %color_code%) else (echo Invalid choice. Exiting. &
 :set_password
 cls
 set /p password=Enter Password:
-if "%password%"=="RoninOnTopXOXO" goto check_ip
+if "%password%"=="RoninOnTopXOXO" goto check_vpn_profile
 echo Invalid password. Exiting.
 pause
 exit
+
+:check_vpn_profile
+cls
+echo Checking for existing VPN profile...
+rasdial "VPNBook" >nul 2>&1
+if %errorlevel% neq 0 (
+    echo VPN profile not found. Creating a new VPN profile...
+    rasphone -a
+    echo Connection Name: VPNBook
+    echo VPN Server: US16.vpnbook.com
+    echo Username: vpnbook
+    echo Password: 54ac423
+    echo Domain: (Leave blank)
+    echo Phone Number: (Leave blank)
+    pause
+    rasphone -a "VPNBook" "US16.vpnbook.com" "vpnbook" "54ac423"
+    if %errorlevel% neq 0 (
+        echo Failed to create VPN profile. Exiting.
+        pause
+        exit
+    )
+)
 
 :check_ip
 cls
