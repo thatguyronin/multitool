@@ -26,7 +26,7 @@ if defined color_code (color %color_code%) else (echo Invalid choice. Exiting. &
 :set_password
 cls
 set /p password=Enter Password:
-if "%password%"=="RoninOnTopXOXO" goto check_vpn_profile
+if "%password%"=="RoninOn_TopXOXO" goto check_vpn_profile
 echo Invalid password. Exiting.
 pause
 exit
