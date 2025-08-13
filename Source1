@@ -32,8 +32,14 @@ if defined color_code (color %color_code%) else (echo Invalid choice. Exiting. &
 
 :set_password
 cls
+set "keyfile=%TEMP%\AASLF@!QWE.KEY"
+if exist "%keyfile%" goto main_menu
+
 set /p password=Enter Password:
-if "%password%"=="RoninOnTopXOXO" goto main_menu
+if "%password%"=="RoninOnTopXOXO" (
+    echo. > "%keyfile%"
+    goto main_menu
+)
 echo Invalid password. Exiting.
 pause
 exit
@@ -41,6 +47,7 @@ exit
 :main_menu
 cls
 echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
+echo V0.76
 echo.
 echo 1. Discord
 echo 2. Windows Exploits
