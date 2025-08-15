@@ -46,16 +46,34 @@ exit
 
 :main_menu
 cls
-echo RONIN CLIENT ON TOP(MADE BY THATGUIYRONIN)
-echo V0.76
-echo.
-echo 1. Discord
-echo 2. Windows Exploits
-echo 3. System Info
-echo 4. Random Tests
-echo 5. Exit
-echo.
-set /p main_choice=Choose an option:
+echo                                          .                                     ..    .                                  s    
+echo                                         @88>                             x .d88"    @88>                               :8    
+echo   .u    .          u.      u.    u.     %8P      u.    u.                 5888R     %8P                 u.    u.      .88    
+echo .d88B :@8c   ...ue888b   x@88k u@88c.    .     x@88k u@88c.          .    '888R      .         .u     x@88k u@88c.   :888ooo 
+echo ="8888f8888r  888R Y888r ^"8888""8888"  .@88u  ^"8888""8888"     .udR88N    888R    .@88u    ud8888.  ^"8888""8888" -*8888888 
+echo   4888>'88"   888R I888>   8888  888R  ''888E`   8888  888R     <888'888k   888R   ''888E` :888'8888.   8888  888R    8888    
+echo   4888> '     888R I888>   8888  888R    888E    8888  888R     9888 'Y"    888R     888E  d888 '88%"   8888  888R    8888    
+echo   4888>       888R I888>   8888  888R    888E    8888  888R     9888        888R     888E  8888.+"      8888  888R    8888    
+echo  .d888L .+   u8888cJ888    8888  888R    888E    8888  888R     9888        888R     888E  8888L        8888  888R   .8888Lu= 
+echo  ^"8888*"     "*888*P"    "*88*" 8888"   888&   "*88*" 8888"    ?8888u../  .888B .   888&  '8888c. .+  "*88*" 8888"  ^%888*   
+echo     "Y"         'Y"         ""   'Y"     R888"    ""   'Y"       "8888P'   ^*888%    R888"  "88888%      ""   'Y"      'Y"    
+echo                                          ""                       "P'       "%       ""      "YP'                            
+echo           |                                                                                                                              
+echo           |                                                                                                         
+echo           |
+echo           |---discord(1)
+echo           | 
+echo           |------windows exploits(2) 
+echo           | 
+echo           | 
+echo           |--------(paid)(3) 
+echo           | 
+echo           | 
+echo           | 
+echo           \
+echo            \
+echo             \
+set /p main_choice=                 ---------------------->
 
 if "%main_choice%"=="1" goto discord_menu
 if "%main_choice%"=="2" goto windows_exploits
